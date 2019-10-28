@@ -71,7 +71,7 @@ namespace DBDShopLib
         {
             List<Product> products = new List<Product>();
 
-            string query = "SELECT Id,Name FROM Products Where stock =0";
+            string query = "SELECT Id,Name FROM Products Where stock = 0";
             MySqlCommand cmd = new MySqlCommand(query, m_connection);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
