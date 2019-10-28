@@ -31,10 +31,11 @@ namespace Tests
         public void MyOhterTest()
         {
             //Connect to the test database
-            //Client client = new Client("NLphb4HrH0", "NLphb4HrH0", "VM8GYV3qZ7");
+            Client client = new Client("NLphb4HrH0", "NLphb4HrH0", "VM8GYV3qZ7");
             
             //Any testing you need to do
             //....
         }
+        
     }
 }
