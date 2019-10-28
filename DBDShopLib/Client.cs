@@ -66,5 +66,23 @@ namespace DBDShopLib
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public void AddProduct(Product producto)
+        {
+
+            foreach(Product product in products)
+            {
+                if (producto.Id == product.Id)
+                {
+
+                }
+                 else
+                {
+
+                }
+            }
+
+            
+        }
     }
 }
