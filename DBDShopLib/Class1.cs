@@ -8,7 +8,7 @@ namespace DBDShopLib
 {
     public class Class1
     {
-.
+
 
 
 

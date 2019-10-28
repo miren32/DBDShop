@@ -66,5 +66,15 @@ namespace DBDShopLib
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public void WriteDownProducts(List<Product> products)
+        {
+            /*foreach (Product product in products)
+            {
+                string query = "Insert into ";
+            }*/
+                
+              
+         }
     }
 }
