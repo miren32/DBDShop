@@ -66,5 +66,10 @@ namespace DBDShopLib
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public void changePrice(Product product)
+        {
+
+        }
     }
 }
