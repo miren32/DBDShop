@@ -76,7 +76,7 @@ namespace DBDShopLib
             {
                 if (producto.Id == product.Id)
                 {
-                    // +1 a la cantidad EN LA BASE DE DATOS
+                    "UPDATE NOMBRETABLA SET NUMERO PRODUCTO = NUMERO PRODUCTO +1 WHERE COLUMNAIDPRODUCTO = " + producto.Id + ";";
                 }
                  else
                 {
