@@ -82,9 +82,7 @@ namespace DBDShopLib
                 {
                     productsDB.Add(producto);
                 }
-            }
-
-            
+            }            
         }
     }
 }
