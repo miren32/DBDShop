@@ -76,7 +76,9 @@ namespace DBDShopLib
             {
                 if (producto.Id == product.Id)
                 {
-                    "UPDATE NOMBRETABLA SET NUMERO PRODUCTO = NUMERO PRODUCTO +1 WHERE COLUMNAIDPRODUCTO = " + producto.Id + ";";
+                    string query1 = "UPDATE PRODUCTO SET numArticulosStock = numArticulosStock +1 WHERE idProd = " + producto.Id + ";";
+                    MySqlCommand cmd = new MySqlCommand(query1, m_connection);
+                    cmd.ExecuteNonQuery();
                 }
                  else
                 {
