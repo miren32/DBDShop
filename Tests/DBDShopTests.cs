@@ -34,7 +34,11 @@ namespace Tests
             Client client = new Client("NLphb4HrH0", "NLphb4HrH0", "VM8GYV3qZ7");
             
             //Any testing you need to do
-            //....
+            
+
+
+
+
         }
         
     }
