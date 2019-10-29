@@ -9,10 +9,17 @@ namespace Tests
     public class DBDShopTests
     {
         [TestMethod]
+        public void Conexion()
+        {
+            //Connect to the test database
+            Client client = new Client("pBRMsmc7h2", "pBRMsmc7h2", "mQvsG2x5NR");
+        }
+
+       [TestMethod]
         public void AddAndTestData()
         {
             //Connect to the test database
-            Client client= new Client("NLphb4HrH0", "NLphb4HrH0", "VM8GYV3qZ7");
+            Client client= new Client("pBRMsmc7h2", "pBRMsmc7h2", "mQvsG2x5NR");
             //Get all the existing products
             List<Product> products = client.GetProducts();
             //Delete all the products
@@ -28,13 +35,16 @@ namespace Tests
             Assert.IsTrue(products.Count == 2);
         }
         [TestMethod]
-        public void MyOhterTest()
+        public void TestSoldOut()
         {
-            //Connect to the test database
-            Client client = new Client("NLphb4HrH0", "NLphb4HrH0", "VM8GYV3qZ7");
-            
-            //Any testing you need to do
-            
+            // Connect to the test database
+            Client client = new Client("pBRMsmc7h2", "pBRMsmc7h2", "mQvsG2x5NR");
+            //Get all the existing products
+            List<Product> products = client.GetProducts();
+           
+            products = client.GetProducts();
+            Assert.IsTrue(products.Count == 0);
+           
 
 
 
