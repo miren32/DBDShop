@@ -35,7 +35,7 @@ namespace DBDShopApp
             listBox1.Items.Clear();
             foreach (Product product in products)
             {
-                listBox1.Items.Add(product.descripcion);
+                listBox1.Items.Add(product.Name);
             }
         }
     }
