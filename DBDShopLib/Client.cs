@@ -74,11 +74,11 @@ namespace DBDShopLib
             {
                 if (producto.Id == product.Id)
                 {
-
+                    // +1 a la cantidad
                 }
                  else
                 {
-
+                    //meter el nuevo producto
                 }
             }
 
