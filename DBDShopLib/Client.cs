@@ -69,16 +69,18 @@ namespace DBDShopLib
 
         public void AddProduct(Product producto)
         {
-
-            foreach(Product product in products)
+            List<Product> productsDB = new List<Product>();
+            productsDB = GetProducts();
+            
+            foreach (Product product in productsDB)
             {
                 if (producto.Id == product.Id)
                 {
-                    // +1 a la cantidad
+                    // +1 a la cantidad EN LA BASE DE DATOS
                 }
                  else
                 {
-                    //meter el nuevo producto
+                    productsDB.Add(producto);
                 }
             }
 
