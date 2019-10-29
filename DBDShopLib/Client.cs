@@ -67,9 +67,22 @@ namespace DBDShopLib
             }
         }
 
-        public void changePrice(Product product)
+        public void changePrice(Product newProduct, double newPrice)
         {
+            List<Product> productsDB = new List<Product>();
+            productsDB = GetProducts();
 
-        }
+            foreach (Product product in productsDB)
+            {
+                if(newProduct.Id == product.Id)
+                {
+                    "UPDATE NOMBRETABLA SET COLUMNAPRECIO = " + newPrice + "WHERE COLUMNAIDPRODUCTO = " + newProduct.Id + ";";
+
+                }
+                else
+                {
+                    Console.WriteLine("No existe producto");
+                }
+            }
     }
 }
