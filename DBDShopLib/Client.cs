@@ -74,10 +74,10 @@ namespace DBDShopLib
 
             foreach (Product product in productsDB)
             {
-                if(newProduct.Id == product.Id)
+                if(newProduct.idProd == product.idProd)
                 {
                     //CAMBIAR LOS NOMBRES DE LAS TABLAS Y ATRIBUTOS
-                    "UPDATE PRODUCTO_DISTRIBUIDOR SET precioPD = " + newPrice + "WHERE idProd = " + newProduct.Id + ";";
+                    "UPDATE PRODUCTO_DISTRIBUIDOR SET precioPD = " + newPrice + "WHERE idProd = " + newProduct.idProd + ";";
                 }
                 else
                 {
