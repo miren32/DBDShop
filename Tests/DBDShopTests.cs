@@ -48,13 +48,10 @@ namespace Tests
             Assert.IsTrue(products.Count == 0);
 
             //Insert test data
-            client.SoldOutProducts();
+            client.InsertTestData();
             //Check they were correctly inserted
             products = client.GetProducts();
             Assert.IsTrue(products.Count == 2);
-
-
-
 
         }
         
