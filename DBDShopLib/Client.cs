@@ -67,18 +67,16 @@ namespace DBDShopLib
             }
         }
 
-        public List<Product> WriteDownProducts()
+        public void WriteDownProducts(List<Product> buyProducts)
         {
-            List<Product> buyProducts = new List<Product>();
             List<Product> productsDB = new List<Product>();
             productsDB = GetProducts();
 
             foreach (Product product in products)
             {
-                string query = "Insert into ";
-            }
+                if()
                 
-            return buyProducts; 
+            }
          }
     }
 }
