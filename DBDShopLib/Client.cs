@@ -25,13 +25,13 @@ namespace DBDShopLib
 
         public void InsertTestData()
         {
-            string query = "CREATE TABLE IF NOT EXISTS Products (Id int,Name TEXT)";
+            string query = "CREATE TABLE IF NOT EXISTS PRODUCTO (idProd int,descripcion TEXT, numArticulosStock int check (numArticulosStock>0), primary key (idProd))";
             MySqlCommand cmd = new MySqlCommand(query, m_connection);
             cmd.ExecuteNonQuery();
-            query = "INSERT INTO Products VALUES(1,'Nocilla');";
+            query = "INSERT INTO PRODUCTO (idProd, descripcion) VALUES(1,'Nocilla');";
             cmd = new MySqlCommand(query, m_connection);
             cmd.ExecuteNonQuery();
-            query = "INSERT INTO Products VALUES(2,'Patata');";
+            query = "INSERT INTO PRODUCTO (idProd, descripcion) VALUES (2,'Patata');";
             cmd = new MySqlCommand(query, m_connection);
             cmd.ExecuteNonQuery();
         }
@@ -61,9 +61,9 @@ namespace DBDShopLib
 
         public void DeleteProducts(List<Product> products)
         {
-            foreach(Product product in products)
+            foreach (Product product in products)
             {
-                string query = "DELETE FROM Products WHERE Id =" + product.Id + ";";
+                string query = "DELETE FROM PRODUCTO WHERE idProd =" + product.Id + ";";
                 MySqlCommand cmd = new MySqlCommand(query, m_connection);
                 cmd.ExecuteNonQuery();
             }
