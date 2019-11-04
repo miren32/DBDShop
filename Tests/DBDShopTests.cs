@@ -41,10 +41,17 @@ namespace Tests
             Client client = new Client("pBRMsmc7h2", "pBRMsmc7h2", "mQvsG2x5NR");
             //Get all the existing products
             List<Product> products = client.GetProducts();
-           
+
+            client.DeleteProducts(products);
+            //Check we deleted all the products
             products = client.GetProducts();
             Assert.IsTrue(products.Count == 0);
-           
+
+            //Insert test data
+            client.SoldOutProducts();
+            //Check they were correctly inserted
+            products = client.GetProducts();
+            Assert.IsTrue(products.Count == 2);
 
 
 

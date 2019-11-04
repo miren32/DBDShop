@@ -25,13 +25,13 @@ namespace DBDShopLib
 
         public void InsertTestData()
         {
-            string query = "CREATE TABLE IF NOT EXISTS Products (Id int,Name TEXT)";
+            string query = "CREATE TABLE IF NOT EXISTS PRODUCTO (idProd int,descripcion TEXT, numArticulosStock int check (numArticulosStock>0), primary key (idProd))";
             MySqlCommand cmd = new MySqlCommand(query, m_connection);
             cmd.ExecuteNonQuery();
-            query = "INSERT INTO Products VALUES(1,'Nocilla');";
+            query = "INSERT INTO PRODUCTO (idProd, descripcion) VALUES(1,'Nocilla');";
             cmd = new MySqlCommand(query, m_connection);
             cmd.ExecuteNonQuery();
-            query = "INSERT INTO Products VALUES(2,'Patata');";
+            query = "INSERT INTO PRODUCTO (idProd, descripcion) VALUES (2,'Patata');";
             cmd = new MySqlCommand(query, m_connection);
             cmd.ExecuteNonQuery();
         }
@@ -40,13 +40,13 @@ namespace DBDShopLib
         {
             List<Product> products = new List<Product>();
 
-            string query = "SELECT Id,Name FROM Products";
+            string query = "SELECT idProd,descripcion FROM PRODUCTO";
             MySqlCommand cmd = new MySqlCommand(query, m_connection);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                
-                int id= int.Parse(reader.GetValue(0).ToString());
+
+                int id = int.Parse(reader.GetValue(0).ToString());
                 string name = reader.GetValue(1).ToString();
                 Product product = new Product();
                 product.Id = id;
@@ -59,9 +59,9 @@ namespace DBDShopLib
 
         public void DeleteProducts(List<Product> products)
         {
-            foreach(Product product in products)
+            foreach (Product product in products)
             {
-                string query = "DELETE FROM Products WHERE Id =" + product.Id + ";";
+                string query = "DELETE FROM PRODUCTO WHERE idProd =" + product.Id + ";";
                 MySqlCommand cmd = new MySqlCommand(query, m_connection);
                 cmd.ExecuteNonQuery();
             }
@@ -71,7 +71,7 @@ namespace DBDShopLib
         {
             List<Product> products = new List<Product>();
             products = GetProducts();           
-            string query = "SELECT Id,Name FROM PRODUCTO Where stock = 0";
+            string query = "SELECT idProd FROM PRODUCTO Where numArticulosStock = 0";
             MySqlCommand cmd = new MySqlCommand(query, m_connection);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
