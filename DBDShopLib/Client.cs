@@ -77,7 +77,7 @@ namespace DBDShopLib
                 if(newProduct.Id == product.Id)
                 {
                     //CAMBIAR LOS NOMBRES DE LAS TABLAS Y ATRIBUTOS
-                    "UPDATE NOMBRETABLA SET COLUMNAPRECIO = " + newPrice + "WHERE COLUMNAIDPRODUCTO = " + newProduct.Id + ";";
+                    "UPDATE PRODUCTO_DISTRIBUIDOR SET precioPD = " + newPrice + "WHERE idProd = " + newProduct.Id + ";";
                 }
                 else
                 {
