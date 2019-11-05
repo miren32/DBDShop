@@ -12,7 +12,7 @@ namespace DBDShopLib
     {
         MySqlConnection m_connection = null;
 
-        public Client(string databasename, string username, string password, string server= "remotemysql.com")
+        public Client(string databasename, string username, string password, string server = "remotemysql.com")
         {
             m_connection = new MySqlConnection();
             m_connection.ConnectionString =
@@ -40,17 +40,19 @@ namespace DBDShopLib
         {
             List<Product> products = new List<Product>();
 
-            string query = "SELECT idProd,descripcion FROM PRODUCTO";
+            string query = "SELECT idProd,descripcion, numArticulosStock FROM PRODUCTO";
             MySqlCommand cmd = new MySqlCommand(query, m_connection);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                
-                int id= int.Parse(reader.GetValue(0).ToString());
-                string name = reader.GetValue(1).ToString();
+
+                int id = int.Parse(reader.GetValue(0).ToString());
+                string desc = reader.GetValue(1).ToString();
+                int numStock = int.Parse(reader.GetValue(2).ToString());
                 Product product = new Product();
-                product.Id = id;
-                product.Name = name;
+                product.idProd = id;
+                product.descripcion = desc;
+                product.numArticulosStock = numStock;
                 products.Add(product);
             }
             reader.Close();
@@ -59,11 +61,34 @@ namespace DBDShopLib
 
         public void DeleteProducts(List<Product> products)
         {
-            foreach(Product product in products)
+            foreach (Product product in products)
             {
-                string query = "DELETE FROM PRODUCTO WHERE idProd =" + product.Id + ";";
+                string query = "DELETE FROM PRODUCTO WHERE idProd =" + product.idProd + ";";
                 MySqlCommand cmd = new MySqlCommand(query, m_connection);
                 cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void AddProduct(Product producto)
+        {
+            List<Product> productsDB = new List<Product>();
+            productsDB = GetProducts();
+
+            foreach (Product product in productsDB)
+            {
+                if (producto.idProd == product.idProd)
+                {
+                    string query1 = "UPDATE PRODUCTO SET numArticulosStock = numArticulosStock +1 WHERE idProd = " + producto.idProd + ";";
+                    MySqlCommand cmd = new MySqlCommand(query1, m_connection);
+                    cmd.ExecuteNonQuery();
+                }
+                else
+                {
+                    productsDB.Add(producto);
+                    string query2 = "INSERT INTO PRODUCTO(idProd, numArticulosStock) VALUES(" + producto.idProd + "," + producto.numArticulosStock + ");";
+                    MySqlCommand cmd = new MySqlCommand(query2, m_connection);
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
     }
