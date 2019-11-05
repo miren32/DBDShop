@@ -69,16 +69,21 @@ namespace DBDShopLib
             }
         }
 
-        public void WriteDownProducts(List<Product> buyProducts)
+        public List<Product> WriteDownProducts(Product productBuy)
         {
             List<Product> productsDB = new List<Product>();
+            List<Product> productosPedidos = new List<Product>();
             productsDB = GetProducts();
 
             foreach (Product product in productsDB)
             {
-                if()
-                
+                if(productBuy.idProd == product.idProd)
+                {
+                    product.numArticulosStock = product.numArticulosStock - 1;
+                    productosPedidos.Add(productBuy);
+                }
             }
+            return productosPedidos;
          }
     }
 }
