@@ -63,7 +63,7 @@ namespace DBDShopLib
         {
             foreach(Product product in products)
             {
-                string query = "DELETE FROM PRODUCTO WHERE idProd =" + product.Id + ";";
+                string query = "DELETE FROM PRODUCTO WHERE idProd =" + product.idProd + ";";
                 MySqlCommand cmd = new MySqlCommand(query, m_connection);
                 cmd.ExecuteNonQuery();
             }
