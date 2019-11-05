@@ -27,6 +27,7 @@ namespace Tests
             products= client.GetProducts();
             Assert.IsTrue(products.Count == 2);
         }
+
         [TestMethod]
         public void TestSoldOut()
         {
@@ -47,8 +48,6 @@ namespace Tests
             //Check they were correctly inserted
             products = client.GetProducts();
             Assert.IsTrue(products.Count == 2);
-
-
         }
 
         [TestMethod]
