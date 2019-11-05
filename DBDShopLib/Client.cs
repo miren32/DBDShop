@@ -38,19 +38,21 @@ namespace DBDShopLib
 
         public List<Product> GetProducts()
         {
-            List<Product> products = new List<Product>();
+           List<Product> products = new List<Product>();
 
-            string query = "SELECT idProd,descripcion FROM PRODUCTO";
+            string query = "SELECT idProd,descripcion, numArticulosStock FROM PRODUCTO";
             MySqlCommand cmd = new MySqlCommand(query, m_connection);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
 
                 int id = int.Parse(reader.GetValue(0).ToString());
-                string name = reader.GetValue(1).ToString();
+                string desc = reader.GetValue(1).ToString();
+                int numStock = int.Parse(reader.GetValue(2).ToString());
                 Product product = new Product();
-                product.Id = id;
-                product.Name = name;
+                product.idProd = id;
+                product.descripcion = desc;
+                product.numArticulosStock = numStock;
                 products.Add(product);
             }
             reader.Close();
@@ -78,7 +80,7 @@ namespace DBDShopLib
             while (reader.Read())
             {
                 int id = int.Parse(reader.GetValue(0).ToString());
-                string name = reader.GetValue(1).ToString();
+                string desc = reader.GetValue(1).ToString();
                 Product product = new Product();
                 product.Id = id;
                 product.Name = name;
