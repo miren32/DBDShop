@@ -69,8 +69,9 @@ namespace DBDShopLib
 
         public List<Product> SoldOutProducts()
         {
-            List<Product> products = new List<Product>();
-            products = GetProducts();           
+            
+            List<Product> productsSinStock = new List<Product>();
+            productsSinStock = GetProducts();           
             string query = "SELECT idProd FROM PRODUCTO Where numArticulosStock = 0";
             MySqlCommand cmd = new MySqlCommand(query, m_connection);
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -81,10 +82,10 @@ namespace DBDShopLib
                 Product product = new Product();
                 product.Id = id;
                 product.Name = name;
-                products.Add(product);
+                productsSinStock.Add(product);
             }
             reader.Close();
-            return products;
+            return productsSinStock;
 
         }
     }

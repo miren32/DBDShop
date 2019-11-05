@@ -40,18 +40,18 @@ namespace Tests
             // Connect to the test database
             Client client = new Client("pBRMsmc7h2", "pBRMsmc7h2", "mQvsG2x5NR");
             //Get all the existing products
-            List<Product> products = client.GetProducts();
+            List<Product> productsSinStock = client.GetProducts();
 
-            client.DeleteProducts(products);
+            client.DeleteProducts(productsSinStock);
             //Check we deleted all the products
-            products = client.GetProducts();
-            Assert.IsTrue(products.Count == 0);
+            productsSinStock = client.GetProducts();
+            Assert.IsTrue(productsSinStock.Count == 0);
 
             //Insert test data
             client.InsertTestData();
             //Check they were correctly inserted
-            products = client.GetProducts();
-            Assert.IsTrue(products.Count == 2);
+            productsSinStock = client.GetProducts();
+            Assert.IsTrue(productsSinStock.Count == 2);
 
         }
         
