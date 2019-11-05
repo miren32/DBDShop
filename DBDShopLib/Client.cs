@@ -74,7 +74,7 @@ namespace DBDShopLib
             List<Product> productsDB = new List<Product>();
             productsDB = GetProducts();
 
-            foreach (Product product in products)
+            foreach (Product product in productsDB)
             {
                 if()
                 
