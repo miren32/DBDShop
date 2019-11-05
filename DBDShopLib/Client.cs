@@ -79,6 +79,7 @@ namespace DBDShopLib
             {
                 if(productBuy.idProd == product.idProd)
                 {
+                    //HACER COSIS EN LA DB
                     product.numArticulosStock = product.numArticulosStock - 1;
                     productosPedidos.Add(productBuy);
                 }
