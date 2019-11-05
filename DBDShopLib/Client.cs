@@ -85,7 +85,7 @@ namespace DBDShopLib
                  else
                 {
                     productsDB.Add(producto);
-                    string query2 = "INSERT INTO PRODUCTO(idProd, numArticulosStock) VALUES("+ producto.idProd + "," + producto.numArticuloStock + ");";
+                    string query2 = "INSERT INTO PRODUCTO(idProd, numArticulosStock) VALUES("+ producto.idProd + "," + producto.numArticulosStock + ");";
                     MySqlCommand cmd = new MySqlCommand(query2, m_connection);
                     cmd.ExecuteNonQuery();
                 }
