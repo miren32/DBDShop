@@ -50,7 +50,7 @@ namespace DBDShopLib
                 string desc = reader.GetValue(1).ToString();
                 int numStock = int.Parse(reader.GetValue(2).ToString());
                 Product product = new Product();
-                product.idProd = idProd;
+                product.idProd = id;
                 product.descripcion = desc;
                 product.numArticulosStock = numStock;
                 products.Add(product);
