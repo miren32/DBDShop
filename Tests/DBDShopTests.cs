@@ -75,7 +75,9 @@ namespace Tests
             //Check they were correctly inserted
             productsSinStock = client.GetProducts();
             Assert.IsTrue(productsSinStock.Count == 2);
-
+        }
+        public void TestSoldOut()
+        { 
             // Connect to the test database
             Client client = new Client("pBRMsmc7h2", "pBRMsmc7h2", "mQvsG2x5NR");
             //Get all the existing products
