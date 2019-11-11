@@ -18,6 +18,8 @@ namespace Tests
        [TestMethod]
         public void AddAndTestData()
         {
+            //SI HACEMOS LA PRUEBA POR SEPARADO FUNCIONA PERO SI EJECUTAMOS TODOS LOS TEST JUNTOS NO 
+
             //Connect to the test database
             Client client= new Client("pBRMsmc7h2", "pBRMsmc7h2", "mQvsG2x5NR");
             //Get all the existing products
@@ -38,6 +40,8 @@ namespace Tests
         [TestMethod]
         public void TestSoldOut()
         {
+            //FUNCIONA SI LO HACES POR SEPARADO PERO EN CONJUNTO NO 
+
             // Connect to the test database
             Client client = new Client("pBRMsmc7h2", "pBRMsmc7h2", "mQvsG2x5NR");
             //Get all the existing products
@@ -49,7 +53,7 @@ namespace Tests
             Assert.IsTrue(products.Count == 0);
 
             // MAL hay que ponerle mi lista no esa
-
+  
             //Insert test data
             client.InsertTestData();
             //Check they were correctly inserted
@@ -60,6 +64,7 @@ namespace Tests
         [TestMethod]
         public void TestAddProduct()
         {
+            // NO FUNCIONA HAY QUE CREARLE PRODUCTOS Y LISTAS PARA QUE FUNCIONE
             // Connect to the test database
             Client client = new Client("pBRMsmc7h2", "pBRMsmc7h2", "mQvsG2x5NR");
             //Get all the existing products
