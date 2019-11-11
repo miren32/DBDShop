@@ -120,7 +120,9 @@ namespace DBDShopLib
             {
                 if(newProduct.idProd == product.idProd)
                 {
-                    "UPDATE PRODUCTO_DISTRIBUIDOR SET precioPD = " + newPrice + "WHERE idProd = " + newProduct.idProd + ";";
+                    String query2 = "UPDATE PRODUCTO_DISTRIBUIDOR SET precioPD = " + newPrice + "WHERE idProd = " + newProduct.idProd + ";";
+                    MySqlCommand cmd = new MySqlCommand(query2, m_connection);
+                    cmd.ExecuteNonQuery();
                 }
                 else
                 {
