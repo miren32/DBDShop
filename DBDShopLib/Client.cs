@@ -141,7 +141,9 @@ namespace DBDShopLib
             {
                 if(productBuy.idProd == product.idProd)
                 {
-                    //HACER COSIS EN LA DB
+                    String query3 = "UPDATE PRODUCTO SET numArticulosStock = numArticulosStock - 1 WHERE idProd = " + productBuy.idProd + "; ";
+                    MySqlCommand cmd = new MySqlCommand(query3, m_connection);
+                    cmd.ExecuteNonQuery();
                     product.numArticulosStock = product.numArticulosStock - 1;
                     productosPedidos.Add(productBuy);
                 }
