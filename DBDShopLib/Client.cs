@@ -127,5 +127,24 @@ namespace DBDShopLib
                     Console.WriteLine("No existe producto");
                 }
             }
+        }
+
+        public List<Product> WriteDownProducts(Product productBuy)
+        {
+            List<Product> productsDB = new List<Product>();
+            List<Product> productosPedidos = new List<Product>();
+            productsDB = GetProducts();
+
+            foreach (Product product in productsDB)
+            {
+                if(productBuy.idProd == product.idProd)
+                {
+                    //HACER COSIS EN LA DB
+                    product.numArticulosStock = product.numArticulosStock - 1;
+                    productosPedidos.Add(productBuy);
+                }
+            }
+            return productosPedidos;
+         }
     }
 }
