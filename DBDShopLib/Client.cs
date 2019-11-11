@@ -98,9 +98,9 @@ namespace DBDShopLib
             
             foreach (Product product in productsDB)
             {
-                if (producto.Id == product.Id)
+                if (producto.idProd == product.idProd)
                 {
-                    string query1 = "UPDATE PRODUCTO SET numArticulosStock = numArticulosStock +1 WHERE idProd = " + producto.Id + ";";
+                    string query1 = "UPDATE PRODUCTO SET numArticulosStock = numArticulosStock +1 WHERE idProd = " + producto.idProd + ";";
                     MySqlCommand cmd = new MySqlCommand(query1, m_connection);
                     cmd.ExecuteNonQuery();
                 }
