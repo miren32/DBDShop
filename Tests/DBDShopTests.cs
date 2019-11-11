@@ -77,11 +77,7 @@ namespace Tests
             //client.AddProduct(Product);
             //Check they were correctly inserted
             productsSinStock = client.GetProducts();
-            Assert.IsTrue(productsSinStock.Count == 2);
-
-
-
-        }
-        
+            Assert.IsTrue(productsSinStock.Count == 2);            
+        }   
     }
 }
