@@ -90,5 +90,25 @@ namespace DBDShopLib
             return productsSinStock;
 
         }
+
+        public void AddProduct(Product producto)
+        {
+            List<Product> productsDB = new List<Product>();
+            productsDB = GetProducts();
+            
+            foreach (Product product in productsDB)
+            {
+                if (producto.Id == product.Id)
+                {
+                    string query1 = "UPDATE PRODUCTO SET numArticulosStock = numArticulosStock +1 WHERE idProd = " + producto.Id + ";";
+                    MySqlCommand cmd = new MySqlCommand(query1, m_connection);
+                    cmd.ExecuteNonQuery();
+                }
+                 else
+                {
+                    productsDB.Add(producto);
+                }
+            }            
+        }
     }
 }
