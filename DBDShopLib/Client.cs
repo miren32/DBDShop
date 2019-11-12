@@ -101,7 +101,7 @@ namespace DBDShopLib
             
             foreach (Product product in productsDB)
             {
-                if (producto.GetId() == product.idProd)
+                if (producto.GetId() == product.GetId())
                 {
                     string query1 = "UPDATE PRODUCTO SET numArticulosStock =" + producto.StockAddOne() + " WHERE idProd = " + producto.GetId() + ";";
                     MySqlCommand cmd = new MySqlCommand(query1, m_connection);
@@ -113,7 +113,14 @@ namespace DBDShopLib
                     MySqlCommand cmd = new MySqlCommand(query2, m_connection);
                     cmd.ExecuteNonQuery();
                 }
-            }            
+
+            }
+            if (productsDB.Count == 0)
+            {
+                string query2 = "INSERT INTO PRODUCTO (idProd, descripcion, numArticulosStock) VALUES (" + producto.GetId() + ",' " + producto.GetDesc() + "', " + producto.GetStock() + " );";
+                MySqlCommand cmd = new MySqlCommand(query2, m_connection);
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public void changePrice(Product newProduct, double newPrice)
