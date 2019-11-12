@@ -61,16 +61,12 @@ namespace Tests
             Client client = new Client("pBRMsmc7h2", "pBRMsmc7h2", "mQvsG2x5NR");
             //Get all the existing products
             List<Product> productsDB = client.GetProducts();
-
+           
             client.DeleteProducts(productsDB);
             //Check we deleted all the products
             productsDB = client.GetProducts();
             Assert.IsTrue(productsDB.Count == 0);
-
-            // MAL hay que ponerle mi lista no esa
-            // NO FUNCIONA HAY QUE CREARLE PRODUCTOS Y LISTAS PARA QUE FUNCIONE
-
-
+            
             //crear un producto
             Product prod = new Product(3, "Pan", 3);
             client.AddProduct(prod);
