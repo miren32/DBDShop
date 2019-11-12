@@ -25,14 +25,14 @@ namespace DBDShopLib
 
         public void InsertTestData()
         {
-            string query = "CREATE TABLE IF NOT EXISTS PRODUCTO (idProd int,descripcion TEXT, numArticulosStock int check (numArticulosStock>0), primary key (idProd))";
-            MySqlCommand cmd = new MySqlCommand(query, m_connection);
+            string query1 = "CREATE TABLE IF NOT EXISTS PRODUCTO (idProd int,descripcion TEXT, numArticulosStock int check (numArticulosStock>0), primary key (idProd))";
+            MySqlCommand cmd = new MySqlCommand(query1, m_connection);
             cmd.ExecuteNonQuery();
-            query = "INSERT INTO PRODUCTO (idProd, descripcion) VALUES(1,'Nocilla');";
-            cmd = new MySqlCommand(query, m_connection);
+            string query2 = "INSERT INTO PRODUCTO (idProd, descripcion, numArticulosStock) VALUES(1,'Nocilla', 1);";
+            cmd = new MySqlCommand(query2, m_connection);
             cmd.ExecuteNonQuery();
-            query = "INSERT INTO PRODUCTO (idProd, descripcion) VALUES (2,'Patata');";
-            cmd = new MySqlCommand(query, m_connection);
+            string query3 = "INSERT INTO PRODUCTO (idProd, descripcion, numArticulosStock) VALUES (2,'Patata', 2);";
+            cmd = new MySqlCommand(query3, m_connection);
             cmd.ExecuteNonQuery();
         }
 
@@ -40,20 +40,20 @@ namespace DBDShopLib
         {
            List<Product> products = new List<Product>();
 
-            string query = "SELECT idProd,descripcion, numArticulosStock FROM PRODUCTO";
+            string query = "SELECT idProd, descripcion, numArticulosStock FROM PRODUCTO";
             MySqlCommand cmd = new MySqlCommand(query, m_connection);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                
                 int id= int.Parse(reader.GetValue(0).ToString());
                 string desc = reader.GetValue(1).ToString();
                 int numStock = int.Parse(reader.GetValue(2).ToString());
+                if(numStock.Equals(null))
+                {
+                    numStock = 0;
+                }
              
                 Product product = new Product(id, desc, numStock);
-                product.idProd = id;
-                product.descripcion = desc;
-                product.numArticulosStock = numStock;
               
                 products.Add(product);
             }
@@ -73,21 +73,20 @@ namespace DBDShopLib
 
         public List<Product> SoldOutProducts()
         {
-            
             List<Product> productsSinStock = new List<Product>();
-            productsSinStock = GetProducts();           
+            productsSinStock = GetProducts();  
+            
             string query = "SELECT idProd FROM PRODUCTO Where numArticulosStock = 0";
             MySqlCommand cmd = new MySqlCommand(query, m_connection);
             MySqlDataReader reader = cmd.ExecuteReader();
+
             while (reader.Read())
             {
                 int id = int.Parse(reader.GetValue(0).ToString());
                 string desc = reader.GetValue(1).ToString();
             
                 Product product = new Product(id, desc, 0 );
-                product.idProd = id;
-                product.descripcion = desc;
-                
+            
                 productsSinStock.Add(product);
             }
             reader.Close();
@@ -102,15 +101,15 @@ namespace DBDShopLib
             
             foreach (Product product in productsDB)
             {
-                if (producto.idProd == product.idProd)
+                if (producto.GetId() == product.idProd)
                 {
-                    string query1 = "UPDATE PRODUCTO SET numArticulosStock = numArticulosStock +1 WHERE idProd = " + producto.idProd + ";";
+                    string query1 = "UPDATE PRODUCTO SET numArticulosStock =" + producto.StockAddOne() + " WHERE idProd = " + producto.GetId() + ";";
                     MySqlCommand cmd = new MySqlCommand(query1, m_connection);
                     cmd.ExecuteNonQuery();
                 }
                  else
                 {
-                    string query2 = "INSERT INTO PRODUCTO (idProd, descripcion) VALUES (" +producto.idProd +",' " + producto.descripcion + "');";
+                    string query2 = "INSERT INTO PRODUCTO (idProd, descripcion, numArticulosStock) VALUES (" + producto.GetId() +",' " + producto.GetDesc() + "', "+ producto.GetStock() +" );";
                     MySqlCommand cmd = new MySqlCommand(query2, m_connection);
                     cmd.ExecuteNonQuery();
                 }
@@ -124,9 +123,9 @@ namespace DBDShopLib
 
             foreach (Product product in productsDB)
             {
-                if(newProduct.idProd == product.idProd)
+                if(newProduct.GetId() == product.GetId())
                 {
-                    String query2 = "UPDATE PRODUCTO_DISTRIBUIDOR SET precioPD = " + newPrice + "WHERE idProd = " + newProduct.idProd + ";";
+                    String query2 = "UPDATE PRODUCTO_DISTRIBUIDOR SET precioPD = " + newPrice + "WHERE idProd = " + newProduct.GetId() + ";";
                     MySqlCommand cmd = new MySqlCommand(query2, m_connection);
                     cmd.ExecuteNonQuery();
                 }
@@ -145,13 +144,11 @@ namespace DBDShopLib
 
             foreach (Product product in productsDB)
             {
-                if(productBuy.idProd == product.idProd)
+                if(productBuy.GetId() == product.GetId())
                 {
-                    String query3 = "UPDATE PRODUCTO SET numArticulosStock = numArticulosStock - 1 WHERE idProd = " + productBuy.idProd + "; ";
+                    String query3 = "UPDATE PRODUCTO SET numArticulosStock = " + productBuy.StockRemoveOne() +" WHERE idProd = " + productBuy.GetId() + "; ";
                     MySqlCommand cmd = new MySqlCommand(query3, m_connection);
                     cmd.ExecuteNonQuery();
-                    product.numArticulosStock = product.numArticulosStock - 1;
-                    productosPedidos.Add(productBuy);
                 }
             }
             return productosPedidos;
