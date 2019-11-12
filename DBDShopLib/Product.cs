@@ -19,7 +19,33 @@ namespace DBDShopLib
             numArticulosStock = numArticulos;
         }
 
+        public int GetId()
+        {
+            return idProd;
+        }
+
+        public string GetDesc()
+        {
+            return descripcion;
+        }
+
+        public int GetStock()
+        {
+            return numArticulosStock;
+        }
+
+        public int StockAddOne()
+        {
+            numArticulosStock ++;
+            return numArticulosStock;
+        }
+        public int StockRemoveOne()
+        {
+            numArticulosStock--;
+            return numArticulosStock;
+        }
     }
+}
 
    
-}
+
