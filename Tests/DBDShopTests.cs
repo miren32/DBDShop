@@ -14,7 +14,6 @@ namespace Tests
             //Connect to the test database
             Client client = new Client("pBRMsmc7h2", "pBRMsmc7h2", "mQvsG2x5NR");
         }
-
         [TestMethod]
         public void AddAndTestData()
         {
@@ -34,7 +33,6 @@ namespace Tests
             products = client.GetProducts();
             Assert.IsTrue(products.Count == 2);
         }
-
         [TestMethod]
         public void TestSoldOut()
         {
@@ -80,17 +78,44 @@ namespace Tests
             productsDB = client.GetProducts();
             Assert.IsTrue(productsDB.Count == 1);
         }
-
         [TestMethod]
         public void TestChangePrice()
         {
+            // Connect to the test database
+            Client client = new Client("pBRMsmc7h2", "pBRMsmc7h2", "mQvsG2x5NR");
+            //Get all the existing products
+            List<Product> productsDB = client.GetProducts();
+
+            client.DeleteProducts(productsDB);
+            //Check we deleted all the products
+            productsDB = client.GetProducts();
+            Assert.IsTrue(productsDB.Count == 0);
+
+            //Insert test data
+            client.InsertTestData();
+            //Check they were correctly inserted
+            productsDB = client.GetProducts();
+            Assert.IsTrue(productsDB.Count == 2);
 
         }
-
         [TestMethod]
         public void TestWriteDownProducts()
         {
+            // Connect to the test database
+            Client client = new Client("pBRMsmc7h2", "pBRMsmc7h2", "mQvsG2x5NR");
+            //Get all the existing products
+            List<Product> productosPedidos = client.GetProducts();
 
+            client.DeleteProducts(productosPedidos);
+            //Check we deleted all the products
+            productosPedidos = client.GetProducts();
+            Assert.IsTrue(productosPedidos.Count == 0);
+
+            //Insert test data
+            client.InsertTestData();
+            //Check they were correctly inserted
+            productosPedidos = client.GetProducts();
+            Assert.IsTrue(productosPedidos.Count == 2);
         }
 
     }
