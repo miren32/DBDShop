@@ -48,12 +48,13 @@ namespace DBDShopLib
                 
                 int id= int.Parse(reader.GetValue(0).ToString());
                 string desc = reader.GetValue(1).ToString();
-                string numStock = reader.GetValue(1).ToString();
-               // int numStock = int.Parse(reader.GetValue(2).ToString());
-                Product product = new Product();
+                int numStock = int.Parse(reader.GetValue(2).ToString());
+             
+                Product product = new Product(id, desc, numStock);
                 product.idProd = id;
                 product.descripcion = desc;
-               // product.numArticulosStock = numStock;
+                product.numArticulosStock = numStock;
+              
                 products.Add(product);
             }
             reader.Close();
@@ -82,9 +83,11 @@ namespace DBDShopLib
             {
                 int id = int.Parse(reader.GetValue(0).ToString());
                 string desc = reader.GetValue(1).ToString();
-                Product product = new Product();
+            
+                Product product = new Product(id, desc, 0 );
                 product.idProd = id;
                 product.descripcion = desc;
+                
                 productsSinStock.Add(product);
             }
             reader.Close();
@@ -107,7 +110,9 @@ namespace DBDShopLib
                 }
                  else
                 {
-                    productsDB.Add(producto);
+                    string query2 = "INSERT INTO PRODUCTO (idProd, descripcion) VALUES (" +producto.idProd +",' " + producto.descripcion + "');";
+                    MySqlCommand cmd = new MySqlCommand(query2, m_connection);
+                    cmd.ExecuteNonQuery();
                 }
             }            
         }
