@@ -10,7 +10,8 @@ namespace DBDShopLib
     {
         public int idProd = 0;
         public string descripcion = null;
-       public int numArticulosStock =0;
+        public int numArticulosStock =0;
+        public double price = 0.0;
 
         public Product(int idProduct, string descr, int numArticulos)
         {
@@ -43,6 +44,16 @@ namespace DBDShopLib
         {
             numArticulosStock--;
             return numArticulosStock;
+        }
+
+        public double GetPrice()
+        {
+            return price;
+        }
+
+        public double SetPrice(double newPrice)
+        {
+            return price = newPrice;
         }
     }
 }

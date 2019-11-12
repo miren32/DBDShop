@@ -132,7 +132,7 @@ namespace DBDShopLib
             {
                 if(newProduct.GetId() == product.GetId())
                 {
-                    String query2 = "UPDATE PRODUCTO_DISTRIBUIDOR SET precioPD = " + newPrice + "WHERE idProd = " + newProduct.GetId() + ";";
+                    String query2 = "UPDATE PRODUCTO_DISTRIBUIDOR SET precioPD = " + newProduct.SetPrice(newPrice) + "WHERE idProd = " + newProduct.GetId() + ";";
                     MySqlCommand cmd = new MySqlCommand(query2, m_connection);
                     cmd.ExecuteNonQuery();
                 }

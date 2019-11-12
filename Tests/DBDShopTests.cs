@@ -74,26 +74,7 @@ namespace Tests
             productsDB = client.GetProducts();
             Assert.IsTrue(productsDB.Count == 1);
         }
-        [TestMethod]
-        public void TestChangePrice()
-        {
-            // Connect to the test database
-            Client client = new Client("pBRMsmc7h2", "pBRMsmc7h2", "mQvsG2x5NR");
-            //Get all the existing products
-            List<Product> productsDB = client.GetProducts();
-
-            client.DeleteProducts(productsDB);
-            //Check we deleted all the products
-            productsDB = client.GetProducts();
-            Assert.IsTrue(productsDB.Count == 0);
-
-            //Insert test data
-            client.InsertTestData();
-            //Check they were correctly inserted
-            productsDB = client.GetProducts();
-            Assert.IsTrue(productsDB.Count == 2);
-
-        }
+        
         [TestMethod]
         public void TestWriteDownProducts()
         {
