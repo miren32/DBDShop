@@ -78,6 +78,7 @@ namespace Tests
             // MAL hay que ponerle mi lista no esa
 
             //Insert test data
+            client.InsertTestData();
             //crear un producto
             //client.AddProduct(Product);
             //Check they were correctly inserted
